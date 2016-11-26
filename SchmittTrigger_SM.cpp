@@ -1,8 +1,5 @@
 
 #include "SchmittTrigger_SM.hpp"
-#include "RFID_H800_SM.hpp"
-#include "Main_API.hpp"
-#include "DBM_SM.hpp"
 #include "Utils_API.hpp"
 
 
@@ -75,16 +72,12 @@ I8 SchmittTrigger::DoAction()
     {
       outPut = 1; // "dirUp"
       borderCrossing=1;
-      if(status & 0x40) IDnum |= 0x8000;
-      registerEvent(SENESYS_KEY_ENTERED_EVENT, TAG_CROSS, IDnum, 1);
     }
     
     if (HYST_ACT_DIR_DOWN == action)
     {
       outPut = -1;  // "dirDown"
       borderCrossing=1;
-      if(status & 0x40) IDnum |= 0x8000;
-      registerEvent(SENESYS_KEY_ENTERED_EVENT, TAG_CROSS, IDnum, 0);
     }
   }
   else
